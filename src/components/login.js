@@ -2,7 +2,7 @@ import { useState,useRef } from "react";
 import '../css/form.css';
 import '../css/home.css'
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -13,11 +13,11 @@ const Login = () => {
     const [alertShow, setAlertShow] = useState('');
 
     const notify = (mode,msg) => {
-        if(mode == 'success'){
+        if(mode === 'success'){
             toast.success(msg, {
             position: toast.POSITION.TOP_CENTER
             });
-        }else if(mode == 'error'){
+        }else if(mode === 'error'){
             toast.error(msg, {
                 position: toast.POSITION.TOP_CENTER
             });
@@ -36,14 +36,14 @@ const Login = () => {
                 , passRef.current.value)
 
             .then((userCredential) => {
-                console.log('signin',userCredential);
+                //console.log('signin',userCredential);
                 setLoggedIn(true);
                 setAlertShow(notify('success','Login Successfull'))
                 const user = userCredential.user;
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+               // const errorCode = error.code;
+               // const errorMessage = error.message;
                 setAlertShow(notify('error','Login failed. Please check your email/password.'))
             });
     }
@@ -52,7 +52,7 @@ const Login = () => {
         const auth = getAuth();
         signOut(auth)
           .then(() => {
-            console.log('sign out done.');
+            //console.log('sign out done.');
             setLoggedIn(false);
             setAlertShow(notify('success','Signed Out Successful'))
             // Sign-out successful
@@ -64,7 +64,7 @@ const Login = () => {
           });
     };
  
-    console.log('login rendered!')
+    //console.log('login rendered!')
 
     return ( 
         <div className="login">
@@ -112,7 +112,7 @@ const Login = () => {
                                                 </div>
                                     </div>
                                     <button className="custom-btn" >Signin with email</button>
-                                    <button className="custom-btn cus-edit-btn" >Signin with google</button>
+                                    <button className="custom-btn cus-edit-btn" disabled>Signin with google</button>
                                     <div className="cus-signup">
                                     <p>you have no account? <a href="#">Signup</a></p>
                                     </div>

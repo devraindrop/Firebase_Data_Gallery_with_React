@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 .form-container{
-  max-width: 800px;
+  max-width: 900px;
   background: #fff;
-  width: 800px;
+  width: 900px;
   padding: 25px 40px 10px 40px;
   margin: auto;
   margin-bottom: 100px;
@@ -14,6 +14,7 @@
   max-width: 330px;
   margin-bottom: 0px !important;
   box-shadow: 0px 0px 0px rgba(0,0,0,0) !important;
+  padding-top: 15px !important;
 }
 .form-container-2{
   max-width: 160px;
@@ -41,7 +42,7 @@
   align-items: center;
 }
 .form-container form{
-  padding: 20px 0 0 0;
+  padding: 0px 0 0 0;
 }
 .form-container form .form-row{
   display: flex;

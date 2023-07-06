@@ -1,44 +1,43 @@
 import { useEffect, useState } from "react";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, query, orderByChild, startAt, endAt } from "firebase/database";
 import "../css/home.css";
+import Header from "./Header";
 
 const DisplyData = () => {
     const [data, setData] = useState(null);
-    //const [search, setSearch] = useState('');
-    const [quantity, setQuantity] = useState(1)
+    const [search, setSearch] = useState('');
     
-    const handleIncrement = () => {
-      setQuantity(quantity + 1);
-    };
-  
-    const handleDecrement = () => {
-      setQuantity(quantity - 1);
-    };
-
         const db = getDatabase()
         const dataRef = ref(db, 'carData');
 
         useEffect(() => {
             const onDataChange = (snapshot) => {
               const data = snapshot.val();
-              console.log(data);
+              //console.log("data",data);
               setData(data);
             };
-        const onError = (error) => {
-            console.error('Error retrieving data:', error);
-          };
+            const onError = (error) => {
+              console.error('Error retrieving data:', error);
+            };
         
-          const dataListener = onValue(dataRef, onDataChange, onError);
+            //const dataListener = onValue(dataRef, onDataChange, onError);
+            //const searchValue="honda"
+
+            const searchQuery = query(dataRef,  orderByChild('name'),startAt(search),endAt(search + '\uf8ff'));
+            //const searchQuery = query(dataRef, orderByChild('company'), startAt(''), endAt('\uf8ff'));
+
+            const dataListener = onValue(searchQuery, onDataChange, onError);
         
           // Clean up the listener when the component unmounts
           return () => {
-            dataListener(); // Detach the listener
+            dataListener(); // Detach the listener 
           };
-        }, []);
+        }, [search]);
 
 
   return ( 
     <div>
+      <Header setSearch={setSearch} mode={1} />
       <div className="products-wrapper">
         {data ? (
         <ul className="products">
@@ -46,7 +45,7 @@ const DisplyData = () => {
           <li className="product" key={key}>
             <div>
               <div className="product-image">
-                <img src={data[key].img_url}/>
+                <img src={data[key].img_url} alt="car"/>
               </div>
               <h4 className="product-name">{data[key].name} - {data[key].company}</h4> 
               <p className="product-price">{data[key].model}</p>
@@ -61,7 +60,12 @@ const DisplyData = () => {
         ))}
       </ul>
     ) : (
-      <p>Loading data...</p>
+      <>
+      <section className="sec-loading">
+      <div className="one">
+      </div>
+      </section>
+      </>
     )}
 
       </div>
