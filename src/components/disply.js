@@ -19,13 +19,9 @@ const DisplyData = () => {
             const onError = (error) => {
               console.error('Error retrieving data:', error);
             };
-        
-            //const dataListener = onValue(dataRef, onDataChange, onError);
-            //const searchValue="honda"
 
             const searchQuery = query(dataRef,  orderByChild('name'),startAt(search),endAt(search + '\uf8ff'));
-            //const searchQuery = query(dataRef, orderByChild('company'), startAt(''), endAt('\uf8ff'));
-
+            
             const dataListener = onValue(searchQuery, onDataChange, onError);
         
           // Clean up the listener when the component unmounts
@@ -44,8 +40,8 @@ const DisplyData = () => {
         {Object.keys(data).map((key) => (
           <li className="product" key={key}>
             <div>
-              <div className="product-image">
-                <img src={data[key].img_url} alt="car"/>
+              <div className="product-image" >
+                <img src={data[key].img_url} alt="car" />
               </div>
               <h4 className="product-name">{data[key].name} - {data[key].company}</h4> 
               <p className="product-price">{data[key].model}</p>

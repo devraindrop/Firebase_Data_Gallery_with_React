@@ -38,12 +38,14 @@ const Login = () => {
             .then((userCredential) => {
                 //console.log('signin',userCredential);
                 setLoggedIn(true);
-                setAlertShow(notify('success','Login Successfull'))
+                setPreview(v => !v);
+                setAlertShow(notify('success','Signin Successfull'))
                 const user = userCredential.user;
             })
             .catch((error) => {
                // const errorCode = error.code;
                // const errorMessage = error.message;
+               setPreview(v => !v);
                 setAlertShow(notify('error','Login failed. Please check your email/password.'))
             });
     }
@@ -54,12 +56,14 @@ const Login = () => {
           .then(() => {
             //console.log('sign out done.');
             setLoggedIn(false);
+            setPreview(v => !v);
             setAlertShow(notify('success','Signed Out Successful'))
             // Sign-out successful
           })
           .catch((error) => {
             // Handle sign-out error
             console.error('Error signing out:', error);
+            setPreview(v => !v);
             setAlertShow(notify('error',error.message))
           });
     };
@@ -111,7 +115,7 @@ const Login = () => {
                                                 <label>Password</label>
                                                 </div>
                                     </div>
-                                    <button className="custom-btn" >Signin with email</button>
+                                    <button className="custom-btn">Signin with email</button>
                                     <button className="custom-btn cus-edit-btn" disabled>Signin with google</button>
                                     <div className="cus-signup">
                                     <p>you have no account? <a href="#">Signup</a></p>

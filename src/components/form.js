@@ -16,11 +16,6 @@ const Form = () => {
   const modelRef = useRef();
   const imgRef = useRef();
   const urlRef = useRef();
-  //const [name, setName] = useState('');
-  //const [company, setCompany] = useState('');
-  //const [model, setModel] = useState('');
-  //const [img, setImg] = useState('');
-  //const [url, setURL] = useState('');
   const [alertShow, setAlertShow] = useState('');
 
     const notify = (mode,msg) => {
@@ -40,11 +35,11 @@ const Form = () => {
     e.preventDefault();
 
     const data = {
-      name: nameRef,
-      company: companyRef,
-      model: modelRef,
-      img_url: imgRef,
-      url: urlRef
+      name: nameRef.current.value,
+      company: companyRef.current.value,
+      model: modelRef.current.value,
+      img_url: imgRef.current.value,
+      url: urlRef.current.value
     }
 
     try{
@@ -55,8 +50,6 @@ const Form = () => {
       console.error('Error adding data:', error);
       setAlertShow(notify('error','Please login first'))
     };
-
-    //setName('')
 
   }
   return ( 
@@ -75,8 +68,6 @@ const Form = () => {
       <div className="form-row">
             <div className="input-data">
                <input type="text" 
-                //value={name} 
-                //onChange={(e) => setName(e.target.value.trim().substr(0, 1).toUpperCase() + e.target.value.trim().substr(1))}
                 ref={nameRef}
                 required />
                <div className="underline"></div>
@@ -84,8 +75,6 @@ const Form = () => {
             </div>
             <div className="input-data">
                <input type="text" 
-                //value={company} 
-                //onChange={(e) => setCompany(e.target.value.trim().substr(0, 1).toUpperCase() + e.target.value.trim().substr(1))}
                 ref={companyRef}
                 required />
                <div className="underline"></div>
@@ -95,17 +84,13 @@ const Form = () => {
          <div className="form-row">
             <div className="input-data">
                <input type="number" 
-                //value={model} 
-                //onChange={(e) => setModel(e.target.value)}
                 ref={modelRef}
                 required />
                <div className="underline"></div>
                <label>Model</label>
             </div>
             <div className="input-data">
-               <input type="text" 
-                //value={img} 
-                //onChange={(e) => setImg(e.target.value)} 
+               <input type="url" 
                 ref={imgRef}
                 required />
                <div className="underline"></div>
@@ -114,9 +99,7 @@ const Form = () => {
          </div>
          <div className="form-row">
             <div className="input-data">
-               <input type="text" 
-                //value={url} 
-                //onChange={(e) => setURL(e.target.value)}
+               <input type="url" 
                 ref={urlRef}
                 required />
                <div className="underline"></div>

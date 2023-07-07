@@ -32,7 +32,6 @@ const Header = ({setSearch , mode}) => {
                         <Link className='link' to="/" >Home</Link>
                         <Link className='link' to="/AddData" >AddData</Link>
                     </div>
-                    {//mode === 1 && 
                     <div className="search">
                         <a className="mobile-search" href="#">
                             <img src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png" alt='mobile search'/>
@@ -47,19 +46,10 @@ const Header = ({setSearch , mode}) => {
                             </button> 
                         </form>
                     </div>
-                    }
                     <div className='cart'>
                         <div className='wishlist-icon'>
                             <img src="wishlist.png" alt="wishlist" />
                         </div>
-                        {/* <div className="cart-preview active" id="1">
-                            <div style={{position: "relative", overflow: "hidden", width: "360px", height: '375px'}}>
-                            <div style={{position: 'absolute', inset: '0px', overflow: 'scroll', marginRight: '-15px', marginBottom: '-15px'}}>
-
-                            </div>
-                            </div>
-                            
-                    </div> */}
                     </div>
                     <Login />
                 </div>            
