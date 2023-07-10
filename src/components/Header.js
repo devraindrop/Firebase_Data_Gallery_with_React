@@ -19,7 +19,7 @@ const Header = ({setSearch , mode}) => {
     return ( 
         <div className="header">
             <header>
-                <div className='container'>
+                <div id="main-container" className='container'>
                     <div className='brand'>
                         <a href="/">
                             <img 
@@ -28,7 +28,7 @@ const Header = ({setSearch , mode}) => {
                             alt='logo'/>
                         </a>
                     </div>
-                    <div className='nav-links mobile-menu'>
+                    <div className='nav-links'>
                         <Link className='link' to="/" >Home</Link>
                         <Link className='link' to="/AddData" >AddData</Link>
                     </div>

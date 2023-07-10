@@ -162,3 +162,17 @@
   font-weight: 500;
   width: 210px;
 }
+  @media (max-width: 480px) 
+  {
+  .form-container
+  {
+    width: 320px;
+  }
+  }
+  @media (min-width: 520px) 
+  {
+  .form-container
+  {
+    width: 500px;
+  }
+  }
